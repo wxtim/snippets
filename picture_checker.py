@@ -7,10 +7,12 @@ import hashlib
 import collections
 import sys
 
-FOLDER_PATH = "/media/tim/tims_data/tims_code/snippets/"
 EXTENSIONS = ['.jpg', '.jpeg', '.png']
-_, FOLDER_PATH = sys.argv
-
+try:
+    _, FOLDER_PATH = sys.argv
+except:
+    msg = "This programme requires a folder path as a command line argument"
+    raise TypeError(msg)
 
 def merge_two_dicts(dictx, dicty):
     """Given two dicts, merge them into a new dict as a shallow copy."""
