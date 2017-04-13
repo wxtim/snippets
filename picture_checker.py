@@ -3,10 +3,11 @@ Script to check folders full of pictures for duplicates
 bad data &c. &c.
 '''
 FOLDER_PATH = "/media/tim/tims_data/tims_code/snippets/"
+EXTENSIONS =['.jpg', '.jpeg', '.png']
 import os
 import subprocess
 import hashlib
-
+import collections
 
 def merge_two_dicts(x, y):
     """Given two dicts, merge them into a new dict as a shallow copy."""
@@ -34,13 +35,38 @@ def main():
             path = os.path.join(root, file)
             fpaths.append({"path": path,
                            "name": file})            
-    #print fpaths    
+
     files = name_and_md5(fpaths)
-    for file in files:
-        for other_file in files:
-            if file['hash'] == other_file['hash'] and file['path'] != other_file['path']:
-                print "{} and \n{} \nare the same\n".format(file, other_file)
+    count = collections.Counter()
+    for f in files:
+        count[f['hash']] +=1
+
+    ls_duplicate_hashes = []
+    for key, value in count.iteritems():
+        if value > 1:
+            ls_duplicate_hashes.append(key)
+
+
+    dup_hashes = []
+    for hash in ls_duplicate_hashes:
+        dup_hash = []
+        for f in files:           
+            if f['hash'] == hash:
+                dup_hash.append(f)
+
+        
+        if len(dup_hash) != 0:
+            dup_hashes.append(dup_hash)
+
+
+    for hash in dup_hashes:
+        h =  hash[0]['hash'] 
+        print "The following files all have the same MD5 Hash:  ", h
+        for files in hash:
+            # for file in files.items():
+            print files
             
+   
 
 
     
