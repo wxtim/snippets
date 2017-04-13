@@ -5,9 +5,11 @@ bad data &c. &c.
 import os
 import hashlib
 import collections
+import sys
 
 FOLDER_PATH = "/media/tim/tims_data/tims_code/snippets/"
 EXTENSIONS = ['.jpg', '.jpeg', '.png']
+_, FOLDER_PATH = sys.argv
 
 
 def merge_two_dicts(dictx, dicty):
