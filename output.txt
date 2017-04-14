@@ -1,0 +1,8 @@
+
+The following files all have the same MD5 Hash: dd557333c989923dfd1af099a24f6390
+{'path': '/media/tim/tims_data/tims_code/snippets/.git/refs/heads/master', 'hash': 'dd557333c989923dfd1af099a24f6390', 'name': 'master'}
+{'path': '/media/tim/tims_data/tims_code/snippets/.git/refs/remotes/origin/master', 'hash': 'dd557333c989923dfd1af099a24f6390', 'name': 'master'}
+
+The following files all have the same MD5 Hash: 4ce7099e03f005950fa947012ce25a97
+{'path': '/media/tim/tims_data/tims_code/snippets/.git/logs/HEAD', 'hash': '4ce7099e03f005950fa947012ce25a97', 'name': 'HEAD'}
+{'path': '/media/tim/tims_data/tims_code/snippets/.git/logs/refs/heads/master', 'hash': '4ce7099e03f005950fa947012ce25a97', 'name': 'master'}

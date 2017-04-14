@@ -74,11 +74,14 @@ def main():
         if len(dup_hash) != 0:
             dup_hashes.append(dup_hash)
 
+    output_file = open('output.txt', 'w')
     for hash_ in dup_hashes:
         hash2 = hash_[0]['hash']
-        print "The following files all have the same MD5 Hash: {}".format(hash2)
+        output_file.writelines("\nThe following files all have the same MD5 Hash: {}\n".format(hash2))
         for files in hash_:
-            print files
+            
+            output_file.writelines("{}\n".format(str(files)))
+
 
 
 if __name__ == "__main__":
