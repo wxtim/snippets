@@ -117,6 +117,7 @@ def pict(FOLDER_PATH, EXTENSIONS):
 
 
 
+
 def main():
     
 
@@ -124,7 +125,9 @@ def main():
     window = Tkinter.Tk()
     FOLDER_PATH = tkFileDialog.askdirectory()
     pict(FOLDER_PATH, EXTENSIONS)
-
+    msg="Close this dialog and run the script"
+    bt = Tkinter.Button(text=msg, command=window.destroy)
+    bt.pack()
     window.mainloop()
     
 
