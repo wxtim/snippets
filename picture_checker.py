@@ -6,13 +6,43 @@ import os
 import hashlib
 import collections
 import sys
+import Tkinter, tkFileDialog
+import Tkconstants
 
 EXTENSIONS = ['.jpg', '.jpeg', '.png']
+"""
 try:
     _, FOLDER_PATH = sys.argv
 except:
     msg = "This programme requires a folder path as a command line argument"
     raise TypeError(msg)
+"""
+
+class TkFolderDialog(Tkinter.Frame):
+
+  def __init__(self, root):
+
+    Tkinter.Frame.__init__(self, root)
+
+    # options for buttons
+    button_opt = {'fill': Tkconstants.BOTH, 'padx': 5, 'pady': 5}
+
+    # Tkinter.Button(self, text='asksaveasfilename', command=self.asksaveasfilename).pack(**button_opt)
+    Tkinter.Button(self, text='Select a directory to check', command=self.askdirectory).pack(**button_opt)
+
+    # defining options for opening a directory
+    self.dir_opt = options = {}
+    options['initialdir'] = 'C:\\'
+    options['mustexist'] = False
+    options['parent'] = root
+    options['title'] = 'This is a title'
+    
+
+  def askdirectory(self):
+
+    """Returns a selected directoryname."""
+
+    return tkFileDialog.askdirectory(**self.dir_opt)
 
 def merge_two_dicts(dictx, dicty):
     """Given two dicts, merge them into a new dict as a shallow copy."""
@@ -39,7 +69,7 @@ def name_and_md5(fpaths):
     return fpaths_out
 
 
-def main():
+def pict(FOLDER_PATH, EXTENSIONS):
     """
     The main programme. This is designed to take a
     list of folders and return cases where files within those
@@ -47,6 +77,9 @@ def main():
     @todo: probably needs refactoring because it is a bit of a
     mess
     """
+
+
+
     walk = os.walk(FOLDER_PATH, topdown=True)
     fpaths = []
     for root, _, files in walk:
@@ -82,6 +115,18 @@ def main():
             
             output_file.writelines("{}\n".format(str(files)))
 
+
+
+def main():
+    
+
+    
+    window = Tkinter.Tk()
+    FOLDER_PATH = tkFileDialog.askdirectory()
+    pict(FOLDER_PATH, EXTENSIONS)
+
+    window.mainloop()
+    
 
 
 if __name__ == "__main__":
